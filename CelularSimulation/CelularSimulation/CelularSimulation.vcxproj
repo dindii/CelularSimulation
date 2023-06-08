@@ -136,10 +136,20 @@
     <ClInclude Include="src\Core\Application.h" />
     <ClInclude Include="src\Math\vec2.h" />
     <ClInclude Include="src\Math\vec3.h" />
+    <ClInclude Include="src\Math\vec4.h" />
+    <ClInclude Include="src\Rendering\Defines.h" />
+    <ClInclude Include="src\Rendering\Framebuffer.h" />
+    <ClInclude Include="src\Rendering\LowLevelMesh.h" />
+    <ClInclude Include="src\Rendering\Renderer.h" />
+    <ClInclude Include="src\Rendering\Shader.h" />
     <ClInclude Include="src\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp" />
+    <ClCompile Include="src\Rendering\Framebuffer.cpp" />
+    <ClCompile Include="src\Rendering\LowLevelMesh.cpp" />
+    <ClCompile Include="src\Rendering\Renderer.cpp" />
+    <ClCompile Include="src\Rendering\Shader.cpp" />
     <ClCompile Include="src\Window\Window.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
@@ -147,6 +157,9 @@
     <ProjectReference Include="vendor\Glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Shaders\ScreenFragment.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

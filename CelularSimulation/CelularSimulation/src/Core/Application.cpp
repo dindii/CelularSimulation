@@ -1,8 +1,10 @@
 #include "Application.h"
 #include <Window/Window.h>
+#include <Rendering/Renderer.h>
 
 #include <iostream>
-namespace SC
+
+namespace CS
 {
 	Application::Application(std::string&& appName) noexcept : m_Running(true)
 	{
@@ -10,6 +12,8 @@ namespace SC
 			m_Instance = this;
 
 		m_AppWindow = std::make_unique<Window>(std::move(appName));
+
+		Renderer::Init();
 	}
 
 	void Application::Run()
@@ -17,6 +21,8 @@ namespace SC
 		while (m_Running)
 		{
 			OnUpdate();
+
+			Renderer::Draw();
 		}
 	}
 

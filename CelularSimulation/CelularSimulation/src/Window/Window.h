@@ -9,7 +9,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-namespace SC
+namespace CS
 {
 	class Window
 	{
@@ -23,6 +23,8 @@ namespace SC
 
 		vec2<int32_t> GetDims() const { return m_Dims; }
 		std::string_view GetWindowName() const { return m_WindowName; }
+
+		HWND GetNativeWindow() { return m_NativeWindow; }
 
 	private:
 		bool LoadGraphicsContext();

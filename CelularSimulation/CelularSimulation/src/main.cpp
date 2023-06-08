@@ -2,7 +2,7 @@
 
 int main()
 {
-	SC::Application* app = new SC::Application("CelularSimulation");
+	CS::Application* app = new CS::Application("CelularSimulation");
 	
 	app->Run();
 

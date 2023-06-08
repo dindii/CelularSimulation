@@ -5,12 +5,11 @@
 
 #include <Core/Application.h>
 
-namespace SC
+namespace CS
 {
 	LRESULT WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 
-
-	Window::Window(std::string&& name, vec2<int32_t> dims) noexcept : m_WindowName(name), m_Dims(dims)
+	Window::Window(std::string&& name, vec2<int32_t> dims) noexcept : m_Dims(dims), m_WindowName(name), m_NativeWindow(nullptr), m_WindowContext(nullptr)
 	{
 		WNDCLASSEX wc = {};
 
@@ -44,8 +43,7 @@ namespace SC
 			NULL,
 			NULL,
 			NULL,
-			NULL);
-
+			this);
 
 		if (!m_NativeWindow)
 		{
@@ -138,8 +136,6 @@ namespace SC
 
 	void Window::SwapBuffers()
 	{
-		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
 		::SwapBuffers(m_WindowContext);
 	}
 
@@ -147,11 +143,18 @@ namespace SC
 	{
 		switch (msg)
 		{
+			case WM_CREATE:
+			{
+				SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)((CREATESTRUCT*)lparam)->lpCreateParams);
+				return 0;
+			} break;
+
 			case WM_KEYDOWN:
 			{
 				if (wparam == VK_ESCAPE)
 				{
-					Application::GetInstance().Terminate();
+					Window* wndptr = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+					DestroyWindow(wndptr->GetNativeWindow());
 					return 0;
 				}
 			} break;
@@ -165,7 +168,6 @@ namespace SC
 			default:
 				return DefWindowProc(hwnd, msg, wparam, lparam); 
 		}
-
 	}
 
 	Window::~Window()

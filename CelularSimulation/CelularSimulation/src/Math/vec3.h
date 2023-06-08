@@ -1,6 +1,6 @@
 #pragma once
 
-namespace SC
+namespace CS
 {
 	template<typename T>
 	struct vec3

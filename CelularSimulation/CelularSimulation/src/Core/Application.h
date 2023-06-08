@@ -5,7 +5,7 @@
 #include <Window/Window.h>
 
 
-namespace SC
+namespace CS
 {
 
 	class Application
@@ -19,6 +19,8 @@ namespace SC
 		inline void Terminate() { m_Running = false; }
 
 		static Application& GetInstance() { return *m_Instance; }
+
+		std::unique_ptr<Window>& GetWindow() { return m_AppWindow; }
 
 	private:
 		static inline Application* m_Instance = nullptr;

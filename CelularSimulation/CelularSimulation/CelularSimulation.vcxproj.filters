@@ -24,6 +24,12 @@
     <ClInclude Include="src\Window\Window.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="src\Rendering\Renderer.h" />
+    <ClInclude Include="src\Rendering\Framebuffer.h" />
+    <ClInclude Include="src\Rendering\Defines.h" />
+    <ClInclude Include="src\Math\vec4.h" />
+    <ClInclude Include="src\Rendering\LowLevelMesh.h" />
+    <ClInclude Include="src\Rendering\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp">
@@ -33,5 +39,12 @@
       <Filter>Window</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Rendering\Framebuffer.cpp" />
+    <ClCompile Include="src\Rendering\Renderer.cpp" />
+    <ClCompile Include="src\Rendering\LowLevelMesh.cpp" />
+    <ClCompile Include="src\Rendering\Shader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Shaders\ScreenFragment.glsl" />
   </ItemGroup>
 </Project>
