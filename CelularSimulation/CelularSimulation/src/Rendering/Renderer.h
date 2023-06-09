@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Framebuffer.h"
+#include "GPUTexture2D.h"
+#include "CPUTexture2D.h"
+
 #include "LowLevelMesh.h"
 
 #include <Math/vec2.h>
@@ -25,7 +27,8 @@ namespace CS
 		static void SetViewport(vec2<int32_t> position, vec2<int32_t> size);
 
 	private:
-		static std::unique_ptr<Framebuffer> GPUTexture;
+		static std::unique_ptr<GPUTexture2D> GPUTexture;
+		static std::unique_ptr<CPUTexture2D> CPUTexture;
 
 		//This is the quad that will occupy the screen, this is where we will render our screen texture (previously rendered offscreen) to.
 		static std::unique_ptr<LowLevelMesh> GPUQuad;

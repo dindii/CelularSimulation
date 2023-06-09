@@ -30,6 +30,8 @@
     <ClInclude Include="src\Math\vec4.h" />
     <ClInclude Include="src\Rendering\LowLevelMesh.h" />
     <ClInclude Include="src\Rendering\Shader.h" />
+    <ClInclude Include="src\Rendering\GPUTexture2D.h" />
+    <ClInclude Include="src\Rendering\CPUTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp">
@@ -43,6 +45,8 @@
     <ClCompile Include="src\Rendering\Renderer.cpp" />
     <ClCompile Include="src\Rendering\LowLevelMesh.cpp" />
     <ClCompile Include="src\Rendering\Shader.cpp" />
+    <ClCompile Include="src\Rendering\GPUTexture2D.cpp" />
+    <ClCompile Include="src\Rendering\CPUTexture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\ScreenFragment.glsl" />

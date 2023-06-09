@@ -8,8 +8,8 @@ namespace CS
 	LowLevelMesh::LowLevelMesh(std::string& vertexShader, std::string& fragmentShader, std::vector<float>&& vertices, std::vector<float>&& UVs) noexcept : m_VertexBuffer(0),
 		m_VertexArrayBuffer(0), m_VertexCount(0), m_UVsCount(0)
 	{
-		m_VertexCount = vertices.size();
-		m_UVsCount = UVs.size();
+		m_VertexCount = vertices.size() / 3;
+		m_UVsCount = UVs.size() / 2;
 
 		glGenVertexArrays(1, &m_VertexArrayBuffer);
 		glBindVertexArray(m_VertexArrayBuffer);
@@ -29,7 +29,7 @@ namespace CS
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(sizeof(float) * vertices.size()));
 
 

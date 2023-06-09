@@ -18,6 +18,7 @@ namespace CS
 		inline uint32_t GetVertexCount() const { return m_VertexCount; }
 		std::unique_ptr<Shader>& GetShader() { return m_Shader; }
 
+
 	private:
 		std::unique_ptr<Shader> m_Shader;
 		Handle m_VertexBuffer, m_VertexArrayBuffer;
