@@ -70,16 +70,16 @@ namespace CS
 
 		std::vector<uint8_t>& pixels = CPUTexture->GetPixels();
 
-		for (uint32_t y = 0; y < CPUTexture->GetHeight(); y++)
-			for(uint32_t x = 0; x < CPUTexture->GetWidth(); x++)
+		for (int32_t y = 0; y < CPUTexture->GetHeight(); y++)
+			for(int32_t x = 0; x < CPUTexture->GetWidth(); x++)
 			{
-				CPUTexture->SetPixel(x, y, vec4<uint8_t>(255, 0, 255, 255));
+				CPUTexture->SetPixel(x, y, vec4<uint8_t>(255, 0, 255, 200));
 
-				vec2<uint32_t> center = { CPUTexture->GetWidth() / 2, CPUTexture->GetHeight() / 2 };
-				uint32_t radius = 300;
+				vec2<int32_t> center = { (int32_t)CPUTexture->GetWidth() / 2, (int32_t)CPUTexture->GetHeight() / 2 };
+				int32_t radius = 150;
 
-				uint32_t distance = sqrt(pow(x - center.x, 2) + pow(y - center.y, 2));
-				
+				int32_t distance = sqrt(pow(x - center.x, 2) + pow(y - center.y, 2));
+
 				if(distance < radius)
 					CPUTexture->SetPixel(x, y, vec4<uint8_t>(255, 255, 255, 255));
 			}
