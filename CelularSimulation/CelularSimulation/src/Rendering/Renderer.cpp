@@ -29,7 +29,7 @@ namespace CS
 		
 		//This will be the texture that we will upload our CPU pixel buffer to.
 		GPUTexture = std::make_unique<GPUTexture2D>(nullptr, dims.x, dims.y, 4);
-
+		
 
 
 		//This is for our plane that will contain the screen-texture of the application. Positions are in NDC. 
@@ -43,15 +43,18 @@ namespace CS
 			 1.0f,  1.0f,  0.0f
 		};
 
+
+
 		std::vector<float> quadUVs = {
-			 0.0f, 1.0f,  
 			 0.0f, 0.0f,  
-			 1.0f, 0.0f,  
-			 			  
 			 0.0f, 1.0f,  
-			 1.0f, 0.0f,  
-			 1.0f, 1.0f
+			 1.0f, 1.0f,  
+			 			  
+			 0.0f, 0.0f,  
+			 1.0f, 1.0f,  
+			 1.0f, 0.0f
 		};
+
 
 		GPUQuad = std::make_unique<LowLevelMesh>(std::string("res/Shaders/ScreenVertex.glsl"), std::string("res/Shaders/ScreenFragment.glsl"), std::move(quadNDCVertices), std::move(quadUVs));
 	}
@@ -65,28 +68,13 @@ namespace CS
 	{
 		GPUQuad->Bind();
 		GPUQuad->GetShader()->SetUint("screenTexture", 1);
-		
 		GPUTexture->Bind(1);
 
 		std::vector<uint8_t>& pixels = CPUTexture->GetPixels();
-
-		for (int32_t y = 0; y < CPUTexture->GetHeight(); y++)
-			for(int32_t x = 0; x < CPUTexture->GetWidth(); x++)
-			{
-				CPUTexture->SetPixel(x, y, vec4<uint8_t>(255, 0, 255, 200));
-
-				vec2<int32_t> center = { (int32_t)CPUTexture->GetWidth() / 2, (int32_t)CPUTexture->GetHeight() / 2 };
-				int32_t radius = 150;
-
-				int32_t distance = sqrt(pow(x - center.x, 2) + pow(y - center.y, 2));
-
-				if(distance < radius)
-					CPUTexture->SetPixel(x, y, vec4<uint8_t>(255, 255, 255, 255));
-			}
-
 		GPUTexture->SetData(pixels.data());
 
 		Clear();
+
 		glDrawArrays(GL_TRIANGLES, 0, GPUQuad->GetVertexCount());
 	}
 
@@ -103,5 +91,9 @@ namespace CS
 	void Renderer::SetViewport(vec2<int32_t> position, vec2<int32_t> size)
 	{
 		glViewport(position.x, position.y, size.x, size.y);
+	}
+	void Renderer::SetPixel(vec2<uint32_t> coord, vec4<uint8_t> color)
+	{
+		CPUTexture->SetPixel(coord.x, coord.y, color);
 	}
 }

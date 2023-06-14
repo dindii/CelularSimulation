@@ -26,6 +26,8 @@ namespace CS
 		static void SetClearColor(vec4<float>& color);
 		static void SetViewport(vec2<int32_t> position, vec2<int32_t> size);
 
+		static void SetPixel(vec2<uint32_t> coord, vec4<uint8_t> color);
+
 	private:
 		static std::unique_ptr<GPUTexture2D> GPUTexture;
 		static std::unique_ptr<CPUTexture2D> CPUTexture;

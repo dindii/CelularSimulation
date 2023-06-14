@@ -1,5 +1,6 @@
 #pragma once
 #include "CPUTexture2D.h"
+#include <Utils/Utils.h>
 
 namespace CS
 {
@@ -17,7 +18,7 @@ namespace CS
 	{
 		vec4<uint8_t> color(0, 0, 0, 255);
 
-		uint32_t arrayIdx = GetCoordinatesIndex(x, y) * m_numChannels;
+		uint32_t arrayIdx = Get1DIndexFrom2DArray(x, y, m_Width) * m_numChannels;
 
 		color.r = m_Pixels[arrayIdx++];
 		color.g = m_Pixels[arrayIdx++];
@@ -28,7 +29,7 @@ namespace CS
 	}
 	void CPUTexture2D::SetPixel(uint32_t x, uint32_t y, vec4<uint8_t> color)
 	{
-		uint32_t arrayIdx = GetCoordinatesIndex(x, y) * m_numChannels;
+		uint32_t arrayIdx = Get1DIndexFrom2DArray(x, y, m_Width) * m_numChannels;
 		
 		m_Pixels[arrayIdx++] = color.r;
 		m_Pixels[arrayIdx++] = color.g;
@@ -36,8 +37,4 @@ namespace CS
 		m_Pixels[arrayIdx]   = color.a;
 	}
 
-	uint32_t CPUTexture2D::GetCoordinatesIndex(uint32_t x, uint32_t y) const
-	{
-		return (y * m_Width + x);
-	}
 }

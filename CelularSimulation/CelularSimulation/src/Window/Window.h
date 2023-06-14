@@ -6,6 +6,8 @@
 
 #include <Math/vec2.h>
 
+#include <Input/KeyCodes.h>
+
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
@@ -33,6 +35,8 @@ namespace CS
 
 	private:
 		vec2<int32_t> m_Dims;
+		vec2<int32_t> m_ClientDims;
+
 		std::string m_WindowName;
 
 		HWND m_NativeWindow;

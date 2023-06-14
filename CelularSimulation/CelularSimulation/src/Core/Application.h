@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 #include <Window/Window.h>
-
+#include <Input/KeyCodes.h>
 
 namespace CS
 {
@@ -19,8 +19,9 @@ namespace CS
 		inline void Terminate() { m_Running = false; }
 
 		static Application& GetInstance() { return *m_Instance; }
-
 		std::unique_ptr<Window>& GetWindow() { return m_AppWindow; }
+
+		void OnMouseClicked(const KeyCodes mouseButton, vec2<uint32_t> clickedPosition);
 
 	private:
 		static inline Application* m_Instance = nullptr;
