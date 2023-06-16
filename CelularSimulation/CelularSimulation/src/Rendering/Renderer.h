@@ -24,6 +24,8 @@ namespace CS
 		static void Clear();
 
 		static void SetClearColor(vec4<float>& color);
+		static const vec4<float>& GetClearColor() { return m_ClearColor; }
+
 		static void SetViewport(vec2<int32_t> position, vec2<int32_t> size);
 
 		static void SetPixel(vec2<uint32_t> coord, vec4<uint8_t> color);
@@ -34,5 +36,7 @@ namespace CS
 
 		//This is the quad that will occupy the screen, this is where we will render our screen texture (previously rendered offscreen) to.
 		static std::unique_ptr<LowLevelMesh> GPUQuad;
+
+		static vec4<float> m_ClearColor;
 	};
 }

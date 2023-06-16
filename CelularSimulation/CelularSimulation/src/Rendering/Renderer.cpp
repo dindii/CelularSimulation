@@ -18,6 +18,8 @@ namespace CS
 	std::unique_ptr<CPUTexture2D> Renderer::CPUTexture;
 
 	std::unique_ptr<LowLevelMesh> Renderer::GPUQuad;
+	
+	vec4<float> Renderer::m_ClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	void Renderer::Init()
 	{
@@ -57,6 +59,8 @@ namespace CS
 
 
 		GPUQuad = std::make_unique<LowLevelMesh>(std::string("res/Shaders/ScreenVertex.glsl"), std::string("res/Shaders/ScreenFragment.glsl"), std::move(quadNDCVertices), std::move(quadUVs));
+
+		SetClearColor(vec4<float>( 0.5f, 0.5f, 0.5f, 1.0f));
 	}
 
 	bool Renderer::Shutdown()
@@ -85,6 +89,7 @@ namespace CS
 
 	void Renderer::SetClearColor(vec4<float>& color)
 	{
+		m_ClearColor = color;
 		glClearColor(color.r, color.g, color.b, color.a);
 	}
 

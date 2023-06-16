@@ -6,11 +6,14 @@ namespace CS
 	enum class EParticleType : uint8_t
 	{
 		NONE = 0,
-		
-		BEGIN = 1,
-		
+
+		BEGIN,
+
 		SAND = BEGIN,
-		
+		WATER,
+
+		SIZE,
+
 		END
 	};
 

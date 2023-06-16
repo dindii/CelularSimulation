@@ -42,8 +42,6 @@ namespace CS
 
 		m_ClientDims = { windowWidth, windowHeight };
 
-		m_Dims = m_ClientDims;
-
 		m_NativeWindow = CreateWindowEx(NULL,
 			name.c_str(),
 			name.c_str(),
@@ -194,7 +192,6 @@ namespace CS
 				app.OnMouseClicked(KeyCodes::CS_MOUSE_RBUTTON, pos);
 
 			} break;
-
 
 			case WM_DESTROY: case WM_QUIT:
 			{
